@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heliport — Quiet ETH payments, native to Robinhood Chain</title>
+<meta name="description" content="Heliport brings discreet ETH payments to Robinhood Chain: sender and amount remain concealed, proofs get computed locally, and live network figures sit alongside.">
+<meta name="theme-color" content="{{theme_light}}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{theme_dark}}" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Heliport: payments without the noise">
+<meta property="og:description" content="Shielded ETH, concealed senders and amounts, proofs built locally. Live Robinhood Chain figures included.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{site_url}}">
+<meta property="og:image" content="{{site_url}}/share-card.jpg">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{site_url}}/share-card.jpg">
+<link rel="canonical" href="{{site_url}}">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/site.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body{{body_attrs}}>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path d="M9 19c-5 1.500-5-2.500-7-3m14 6v-3.870a3.370 3.370 0 0 0-.940-2.610c3.140-.350 6.440-1.540 6.440-7A5.440 5.440 0 0 0 20 4.770 5.070 5.070 0 0 0 19.910 1S18.730.650 16 2.480a13.380 13.380 0 0 0-7 0C6.270.650 5.090 1 5.090 1A5.070 5.070 0 0 0 5 4.770a5.440 5.440 0 0 0-1.500 3.780c0 5.420 3.300 6.610 6.440 7A3.370 3.370 0 0 0 9 18.130V22"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+</svg>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="top" id="top">
+  <div class="ca-bar">
+    <div class="wrap ca-row">{{ca_slot}}</div>
+  </div>
+  <div class="wrap top-row">
+    <a class="brand" href="/" aria-label="Heliport home">
+      <img class="mark" src="/brand-mark.png" width="32" height="32" alt="">
+      <span>heliport</span>
+    </a>
+    <nav class="nav" id="menu" aria-label="Sections">
+      <a href="#pulse">Readout</a>
+      <a href="#moves">Three moves</a>
+      <a href="#register">Register</a>
+      <a href="#token">Contract slot</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <span class="pill pill-top" data-pill data-state="connecting" role="status"><i class="dot" aria-hidden="true"></i><span class="pill-text">Tuning in</span></span>
+    <div class="socials">{{socials}}</div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow pill" data-pill data-state="connecting" role="status" data-reveal style="--i:0"><i class="dot" aria-hidden="true"></i><span class="pill-text">Tuning in</span></p>
+        <h1 data-reveal style="--i:1">Payments without the noise.</h1>
+        <p class="lede" data-reveal style="--i:2">Heliport brings discreet ETH handling to Robinhood Chain natively. Funds enter a shielded balance, transfers keep sender and amount out of public view, and each transfer's proof gets computed locally yet stays checkable onchain.</p>
+        <div class="cta-row" data-reveal style="--i:3">
+          <a class="button" href="#pulse">Jump to readout</a>
+          <a class="button ghost" href="#moves">The three moves</a>
+        </div>
+        <p class="fine" data-reveal style="--i:4">Look, don't touch: this page never asks for keys, approvals or signatures.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 520 520" class="pad">
+          <g class="layer" data-depth="0.02"><g class="spin">
+            <circle cx="260" cy="260" r="254" class="stroke-soft dashed"/>
+          </g></g>
+          <g class="layer" data-depth="0.05">
+            <circle cx="260" cy="260" r="228" class="ring-seg" stroke-dasharray="103.6 15.8" stroke-dashoffset="111.5"/>
+          </g>
+          <g class="layer" data-depth="0.09">
+            <circle cx="260" cy="260" r="169" class="ring-inner draw" pathLength="1"/>
+            <g class="h-mark"><rect x="180.5" y="175.5" width="41" height="169"/><rect x="298.5" y="175.5" width="41" height="169"/><rect x="215" y="243" width="90" height="34"/></g>
+            <circle cx="65" cy="65" r="7" class="fill-ink blip" style="--b:0"/>
+            <circle cx="455" cy="455" r="7" class="fill-ink blip" style="--b:1"/>
+            <circle cx="498" cy="123" r="5" class="fill-ink blip" style="--b:2"/>
+            <circle cx="22" cy="397" r="5" class="fill-ink blip" style="--b:3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Live chain figures">
+    <div class="wrap stats-row">
+      <div data-reveal style="--i:0"><span class="stat-label">Chain TVL</span><strong data-live="tvl"><span class="skel skel-lg"></span></strong><span class="stat-src">DefiLlama</span></div>
+      <div data-reveal style="--i:1"><span class="stat-label">Latest block</span><strong data-live="block"><span class="skel skel-lg"></span></strong><span class="stat-src">Chain RPC</span></div>
+      <div data-reveal style="--i:2"><span class="stat-label">Gas price</span><strong data-live="gas"><span class="skel skel-lg"></span></strong><span class="stat-src">Chain RPC</span></div>
+      <div data-reveal style="--i:3"><span class="stat-label">ETH-pair volume, 24h</span><strong data-live="vol"><span class="skel skel-lg"></span></strong><span class="stat-src">DexScreener</span></div>
+    </div>
+  </section>
+
+  <section id="pulse" class="band">
+    <div class="wrap">
+      <div class="narrow" data-reveal>
+        <h2>Fresh readings</h2>
+        <p>Heliport resides within Robinhood Chain, so this panel tracks that network's pulse. Each figure is requested by this tab, source named underneath. No server of ours keeps a copy.</p>
+      </div>
+      <div class="pulse-grid">
+        <figure class="spark" data-reveal style="--i:1">
+          <figcaption><span class="stat-label">Locked value, daily trail</span><span class="stat-src" data-live="range"><span class="skel skel-sm"></span></span></figcaption>
+          <div class="spark-box" id="spark" role="img" aria-label="Robinhood Chain daily locked-value trail">
+            <span class="skel skel-block" id="spark-skel"></span>
+            <svg id="spark-svg" viewBox="0 0 600 220" preserveAspectRatio="none" hidden>
+              <path id="spark-area" class="area"/>
+              <path id="spark-line" class="line" pathLength="1"/>
+              <line id="spark-cursor" class="cursor" y1="0" y2="220" hidden/>
+            </svg>
+            <div class="spark-tip" id="spark-tip" hidden></div>
+          </div>
+        </figure>
+        <div class="pairs" data-reveal style="--i:2">
+          <table class="cards-table" id="pairs">
+            <caption class="cap">Busiest ETH pairs by 24h volume</caption>
+            <thead><tr><th scope="col">Pair</th><th scope="col">Price</th><th scope="col">24h</th><th scope="col">Liquidity</th><th scope="col">Volume</th></tr></thead>
+            <tbody id="pairs-body">
+              <tr class="skel-row" data-skel="1"><th scope="row"><span class="skel skel-md"></span></th><td data-label="Price"><span class="skel skel-sm"></span></td><td data-label="24h"><span class="skel skel-sm"></span></td><td data-label="Liquidity"><span class="skel skel-sm"></span></td><td data-label="Volume"><span class="skel skel-sm"></span></td></tr>
+              <tr class="skel-row" data-skel="1"><th scope="row"><span class="skel skel-md"></span></th><td data-label="Price"><span class="skel skel-sm"></span></td><td data-label="24h"><span class="skel skel-sm"></span></td><td data-label="Liquidity"><span class="skel skel-sm"></span></td><td data-label="Volume"><span class="skel skel-sm"></span></td></tr>
+              <tr class="skel-row" data-skel="1"><th scope="row"><span class="skel skel-md"></span></th><td data-label="Price"><span class="skel skel-sm"></span></td><td data-label="24h"><span class="skel skel-sm"></span></td><td data-label="Liquidity"><span class="skel skel-sm"></span></td><td data-label="Volume"><span class="skel skel-sm"></span></td></tr>
+              <tr class="skel-row" data-skel="1"><th scope="row"><span class="skel skel-md"></span></th><td data-label="Price"><span class="skel skel-sm"></span></td><td data-label="24h"><span class="skel skel-sm"></span></td><td data-label="Liquidity"><span class="skel skel-sm"></span></td><td data-label="Volume"><span class="skel skel-sm"></span></td></tr>
+            </tbody>
+          </table>
+          <p class="fine" id="pairs-note" data-live="pairs-note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="moves" class="band alt">
+    <div class="wrap">
+      <div class="narrow" data-reveal>
+        <h2>Three moves, one quiet flow</h2>
+        <p>Each step is designed so outsiders learn as little as possible.</p>
+      </div>
+      <ol class="steps">
+        <li data-reveal style="--i:0">
+          <svg class="step-art" viewBox="0 0 720 540" aria-hidden="true"><circle cx="360" cy="270" r="170" class="stroke-ink seg" stroke-dasharray="130 20" stroke-dashoffset="140"/><circle cx="360" cy="270" r="112" class="stroke-soft heavy"/><g class="fill-ink"><circle cx="360" cy="270" r="26"/></g></svg>
+          <div class="step-body"><span class="step-no">1</span><h3>Shield</h3><p>Place ETH into a shielded balance, the starting point for every discreet transfer after it.</p></div>
+        </li>
+        <li data-reveal style="--i:1">
+          <svg class="step-art" viewBox="0 0 720 540" aria-hidden="true"><circle cx="360" cy="270" r="150" class="stroke-soft heavy"/><path class="stroke-ink heavy" d="M290 276l52 52 98-112"/></svg>
+          <div class="step-body"><span class="step-no">2</span><h3>Prove</h3><p>Each payment carries a ZK proof, evidence that the transfer is valid without spilling details. The payer's hardware computes it, so proving stays close to whoever pays.</p></div>
+        </li>
+        <li data-reveal style="--i:2">
+          <svg class="step-art" viewBox="0 0 720 540" aria-hidden="true"><circle cx="300" cy="270" r="130" class="stroke-ink heavy"/><circle cx="420" cy="270" r="130" class="stroke-soft heavy"/><path class="stroke-soft" d="M120 470h480"/><g class="bars sm"><rect x="200" y="430" width="40" height="40" rx="4"/><rect x="260" y="410" width="40" height="60" rx="4"/><rect x="320" y="440" width="40" height="30" rx="4"/></g></svg>
+          <div class="step-body"><span class="step-no">3</span><h3>Move</h3><p>Send ETH onward, withdraw it, or run other onchain operations without needless exposure, while the outcome stays verifiable for anyone.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="register" class="band">
+    <div class="wrap two-col">
+      <div data-reveal>
+        <h2>Stated, absent, unconfirmed</h2>
+        <p>Every outside fact sits in a single ledger and carries one of three states. Only stated entries earn a link or copy button.</p>
+        <p class="note">Absent means nothing is claimed. Unconfirmed means a value exists but nobody has verified it, so it stays plain text.</p>
+        <svg class="side-art" viewBox="0 0 360 240" aria-hidden="true"><rect x="12" y="12" width="336" height="216" rx="14" class="stroke-soft"/><path class="stroke-soft" d="M12 76h336M12 140h336"/><circle cx="52" cy="44" r="10" class="fill-ink"/><circle cx="52" cy="108" r="10" class="stroke-ink heavy"/><path class="stroke-ink heavy" d="M52 98a10 10 0 0 1 0 20z"/><circle cx="52" cy="172" r="10" class="stroke-ink heavy dashed"/><path class="stroke-soft heavy" d="M90 44h200M90 108h160M90 172h120"/></svg>
+      </div>
+      <table class="register" data-reveal style="--i:1">
+        <thead><tr><th scope="col">Item</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+{{register_rows}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sources" class="band">
+    <div class="wrap">
+      <div class="narrow" data-reveal>
+        <h2>Where each number comes from</h2>
+        <p>Providers, refresh rhythm, fallback behaviour when one goes silent.</p>
+      </div>
+      <div class="compare-scroll" data-reveal style="--i:1">
+        <table class="compare cards-table">
+          <thead><tr><th scope="col"><span class="sr">Provider</span></th><th scope="col">Feeds</th><th scope="col">Refresh</th><th scope="col">When it fails</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">DefiLlama</th><td data-label="Feeds">Chain TVL plus the daily trail</td><td data-label="Refresh">Every {{tvl_min}} minutes</td><td data-label="When it fails">Figure shows a dash; trail is skipped</td></tr>
+            <tr><th scope="row">Chain RPC</th><td data-label="Feeds">Block height, gas price, status pill</td><td data-label="Refresh">Every {{rpc_sec}} seconds</td><td data-label="When it fails">Pill goes offline; last values stay put</td></tr>
+            <tr><th scope="row">DexScreener</th><td data-label="Feeds">Pair table plus 24-hour volume</td><td data-label="Refresh">Every {{pairs_sec}} seconds</td><td data-label="When it fails">Table shows a notice instead of rows</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Numbers are for orientation only; they may trail reality by seconds, or by hours for the daily trail.</p>
+    </div>
+  </section>
+
+  <section id="token" class="band alt">
+    <div class="wrap two-col">
+      <div data-reveal>
+        <h2>The contract slot</h2>
+        <p>A strip pinned above everything carries one contract address, in full and never shortened.</p>
+        <ul class="ticks">
+          <li><strong>Dormant until stated.</strong> For now it carries nothing, copies nothing and links nowhere.</li>
+          <li><strong>One tap copies.</strong> After a contract is stated, the entire strip turns into a copy button.</li>
+          <li><strong>The lookup follows.</strong> The panel beside this text then asks DexScreener for pools of that token.</li>
+          <li><strong>Verify twice.</strong> Match any contract against the project's official channels before sending funds anywhere.</li>
+        </ul>
+      </div>
+      <div class="lookup" id="lookup" data-reveal style="--i:1" data-state="{{lookup_state}}">
+        <h3>Pair lookup</h3>
+        <p class="lookup-idle muted">{{lookup_idle}}</p>
+        <dl class="lookup-data" hidden>
+          <div><dt>Pair</dt><dd data-lk="pair"></dd></div>
+          <div><dt>Price</dt><dd data-lk="price"></dd></div>
+          <div><dt>24h change</dt><dd data-lk="change"></dd></div>
+          <div><dt>Liquidity</dt><dd data-lk="liq"></dd></div>
+          <div><dt>Volume, 24h</dt><dd data-lk="vol"></dd></div>
+        </dl>
+        <a class="button ghost lookup-link" hidden target="_blank" rel="noopener">Open on DexScreener</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ground" class="band">
+    <div class="wrap">
+      <h2 data-reveal>Plain ground rules</h2>
+      <div class="grid3">
+        <div data-reveal style="--i:0"><h3>Nothing to sign</h3><p>There are no wallet prompts, approvals or forms here. A page claiming otherwise isn't this one.</p></div>
+        <div data-reveal style="--i:1"><h3>Numbers can trail</h3><p>Third parties produce every figure. They can lag, disagree with other trackers or vanish for a while. Each gauge names its source for that reason.</p></div>
+        <div data-reveal style="--i:2"><h3>Privacy has limits</h3><p>Shielding narrows what outsiders can learn; nobody becomes invisible. Entry and exit points still touch public rails, and careless habits can leave patterns.</p></div>
+      </div>
+      <div class="warning" role="note" data-reveal style="--i:3"><strong>For orientation only.</strong> Nothing on this page is investment guidance. Young markets run thin and swing hard. Stake nothing whose loss would hurt.</div>
+    </div>
+  </section>
+
+  <section id="faq" class="band alt">
+    <div class="wrap two-col">
+      <div data-reveal>
+        <h2>Questions</h2>
+        <p class="muted">Short answers about scope, sources and silence.</p>
+      </div>
+      <div class="faq" data-reveal style="--i:1">
+        <details><summary>Heliport does what, exactly?</summary><p>It gives ETH a shielded balance and a payment flow where sender and amount stay out of public view.</p></details>
+        <details><summary>Where are proofs produced?</summary><p>On the sender's own machine, per the project's design. The aim is a proving step that stays near the person paying rather than on a remote server.</p></details>
+        <details><summary>Can anyone use it already?</summary><p>Availability is whatever the register says. A wallet link appears only after it is stated; until then this page makes no promise.</p></details>
+        <details><summary>Is this an official token page?</summary><p>The strip shows a contract only after somebody states one. Until then, no part of this page stands for a tradable asset.</p></details>
+        <details><summary>Why chase network statistics here?</summary><p>Heliport resides within Robinhood Chain, so the panel shows that network's condition: value locked, newest block, gas price and busy markets.</p></details>
+        <details><summary>Why does the block number move in jumps?</summary><p>Blocks arrive far faster than a {{rpc_sec}}-second poll, so each refresh lands several blocks later; the counter then rolls forward to catch up.</p></details>
+        <details><summary>Why does TVL differ from other trackers?</summary><p>Trackers choose different apps to count and price assets at different moments. This page shows DefiLlama's figure exactly as published.</p></details>
+        <details><summary>Does Heliport store anything about me?</summary><p>There are no accounts, cookies or analytics. This tab calls the three data providers itself, so each of them sees your connection, as with any visit.</p></details>
+        <details><summary>What do the icons at the top right do?</summary><p>Both stay inert until their accounts are stated. Afterwards each turns into a link labelled by a handle read off the stored URL.</p></details>
+        <details><summary>Can I pay here?</summary><p>No. This page is informational; links lead outward to each provider's page, and any trading happens over there, under their terms.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="/" aria-label="Heliport home"><img class="mark" src="/brand-mark.png" width="32" height="32" alt=""><span>heliport</span></a>
+      <p class="fine">Experimental code, supplied without warranty. Informational only; seek independent counsel before touching any token.</p>
+    </div>
+    <div>
+      <h3>Contract</h3>
+      <ul class="addresses">{{footer_contracts}}</ul>
+    </div>
+    <div>
+      <h3>Links</h3>
+      <ul class="links">{{footer_links}}</ul>
+    </div>
+  </div>
+</footer>
+<script type="application/json" id="heli-config">{{config_json}}</script>
+<script src="/site.js" defer></script>
+</body>
+</html>

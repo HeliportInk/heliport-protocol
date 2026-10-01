@@ -1,0 +1,17 @@
+{
+  "name": "heliport",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Heliport: live instrument panel for Robinhood Chain.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "gates": "node gates/run.mjs",
+    "palette": "node scripts/sample-palette.mjs"
+  },
+  "devDependencies": {
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^24.0.0"
+  }
+}
